@@ -22,13 +22,14 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function () {
-    if(false){
+    if(true){
         var partyList = require('./db/Scheme/party');
-        partyList.create({
-            name: "Руки вybp",
-            organization: "Привет пацаны как дело",
+        partyList.createOne({
+            name: "Руки не жопу",
+            organization: "Фанал",
+            description: "Не Сосите наш хуй мы это любим",
             stopVerify: "1000000000",
-            timmeStart: "1235545441",
+            timeStart: "1235545441",
             rulers: [
                 {
                     type: "alcahol",
@@ -37,14 +38,17 @@ db.once('open', function () {
             ],
             photos: [
                 {
-                    _id: 0
+                    id: 3
                 },
                 {
-                    _id: 1
+                    id: 4
+                },
+                {
+                    id: 5
                 },
             ],
             mainPhoto: {
-                _id: 0
+                id: 3
             }
         }, function (error, user) {
             if (error) {

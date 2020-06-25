@@ -9,6 +9,14 @@ var partySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
+    timeinit:{
+        type: Number,
+        required: true,
+    },
     stopVerify:{
         type: Number,
         required: true,
@@ -28,13 +36,13 @@ var partySchema = new mongoose.Schema({
         }
     }],
     photos: [{
-        _id: {
+        id: {
             type: String,
             required: true,
         }
     }],
     mainPhoto: {
-        _id: {
+        id: {
             type: String,
             required: true,
         }
@@ -50,13 +58,19 @@ function getParty(_id){
     return this.find({_id});
 }
 
+function createOne(object, callback) {
+    object['timeinit'] = Date.now()
+    this.create(object, callback)
+    
+}
+
 
 const statics = {
     getAll,
-    getParty
+    getParty,
+    createOne
 }
 const methods = {
-
 }
 
 partySchema.methods = methods;
