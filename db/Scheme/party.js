@@ -55,7 +55,7 @@ function getAll(){
 }
 
 function getParty(_id){
-    return this.find({_id});
+    return this.findById(_id);
 }
 
 function createOne(object, callback) {

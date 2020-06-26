@@ -22,7 +22,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function () {
-    if(true){
+    if(false){
         var partyList = require('./db/Scheme/party');
         partyList.createOne({
             name: "Руки не жопу",
