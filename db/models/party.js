@@ -25,16 +25,7 @@ var partySchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    rulers: [{
-        type: { 
-            type: String,
-            required: true,
-        },
-        value: {
-            type: String,
-            required: true,
-        }
-    }],
+    rulers: [String],
     photos: [{
         id: {
             type: String,
@@ -64,11 +55,24 @@ function createOne(object, callback) {
     
 }
 
+function findParty(name, ruler, notRuller){
+    var regular = new RegExp(`${name}`, 'i')
+    var _ruler = ruler.split("$")
+    var _notRuller = notRuller.split("$")
+    var _find = this.find({name : regular })
+    if(_ruler[0] != '')
+        _find = _find.find({rulers: {$all : _ruler}})
+    if(_notRuller[0] != '')
+        _find = _find.find({rulers: {$not : {$all : _notRuller}}})
+    return _find;
+}
+
 
 const statics = {
     getAll,
     getParty,
-    createOne
+    createOne,
+    findParty
 }
 const methods = {
 }
