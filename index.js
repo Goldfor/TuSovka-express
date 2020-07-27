@@ -115,6 +115,10 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
+app.get('/app/get/android', function(req, res, next){
+    res.download(path.join(__dirname, '/load', '/TuSovka-native.apk'))
+})
+
 
 app.use(function (req, res, next) {
     var err = new Error('File Not Found');
